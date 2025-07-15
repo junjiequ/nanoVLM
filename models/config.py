@@ -61,7 +61,7 @@ class TrainConfig:
     eval_in_epochs: bool = True
     eval_interval: int = gradient_accumulation_steps * 100
     stats_log_interval: int = gradient_accumulation_steps * 25
-    max_training_steps: int = 5000
+    max_training_steps: int = 20000
     max_images_per_example: int = 4
     max_images_per_knapsack: int = 18
     max_sample_length: int = 1024
@@ -73,5 +73,5 @@ class TrainConfig:
     log_wandb: bool = True
     use_lmms_eval: bool = True # Use lmms-eval for evaluation
     lmms_eval_tasks: str = 'mmstar,mmmu,ocrbench,textvqa' # Pass additional task as one string, seperated by commas without spaces (e.g. 'mmstar,mmmu,ocrbench')
-    lmms_eval_limit: int = 2000
+    lmms_eval_limit: int = None
     lmms_eval_batch_size: int = 128
