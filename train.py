@@ -10,7 +10,7 @@ import torch.optim as optim
 from statistics import mean
 from dataclasses import asdict
 from datasets import load_dataset, concatenate_datasets, get_dataset_config_names
-from torch.utils.data import DataLoader, DistributedSampler
+from torch.utils.data import DataLoader
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel
 
@@ -30,10 +30,6 @@ from data.data_utils import synchronized_dataloader_step
 #Otherwise, the tokenizer will throw a warning
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-# Fix for "Decompressed data too large" error with certain PNGs
-import PIL.PngImagePlugin
-PIL.PngImagePlugin.MAX_TEXT_CHUNK = 100 * 1024 * 1024
 
 def seed_worker(worker_id):
     worker_seed = torch.initial_seed() % 2**32
