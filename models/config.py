@@ -54,7 +54,7 @@ class TrainConfig:
     lr_mp: float = 0.00512
     lr_backbones: float = 5e-5
     data_cutoff_idx: int = None
-    val_ratio: float = 0.025
+    val_ratio: float = 0.05
     batch_size: int = 8
     gradient_accumulation_steps: int = 8
     max_grad_norm: float = 1.0
