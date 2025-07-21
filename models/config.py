@@ -67,8 +67,30 @@ class TrainConfig:
     max_sample_length: int = 1024
     compile: bool = False
     resume_from_vlm_checkpoint: bool = False # Indicate if the training should be resumed from a checkpoint of the whole VLM or you want to start from scratch
-    train_dataset_path: str = 'HuggingFaceM4/the_cauldron'
-    train_dataset_name: tuple[str, ...] = ("all", )
+    train_dataset_path: str = 'HuggingFaceM4/cauldron_v3_test'
+    # train_dataset_name: tuple[str, ...] = ("all", )
+    train_dataset_name: tuple[str, ...] = ('CoSyn_400k_chart', 'CoSyn_400k_chemical', 'CoSyn_400k_circuit', 'CoSyn_400k_diagram', 
+                                           'CoSyn_400k_document', 'CoSyn_400k_graphic', 'CoSyn_400k_math', 'CoSyn_400k_music', 
+                                           'CoSyn_400k_nutrition', 'CoSyn_400k_table', 'a_okvqa', 'ai2d', 'ai2d(gpt4v)', 'ai2d(internvl)', 
+                                           'aokvqa', 'arxivqa', 'blockdiagramcomputerized', 'blockdiagramhandwritten', 
+                                           'cambrian(filtered)_processed', 'chart2text', 'chart2text(cauldron)', 'chartqa', 
+                                           'chrome_writting', 'clevr', 'clevr_math(mathv360k)', 'cocoqa', 'diagram_image_to_text', 
+                                           'docvqa', 'drivelm', 'dvqa', 'figureqa', 'figureqa(mathv360k)', 'finqa', 'funsd', 'geo170k(align)', 
+                                           'geo170k(qa)', 'geo3k', 'geometry3k(mathv360k)', 'geomverse', 'geos(mathv360k)', 'groundui', 
+                                           'hateful_memes', 'hitab', 'hme100k', 'iam', 'iconqa', 'iconqa(mathv360k)', 'idk', 'iiit5k', 
+                                           'image_textualization(filtered)', 'imgur5k', 'infographic(gpt4v)', 'infographic_vqa', 
+                                           'infographic_vqa_llava_format', 'intergps', 'latex_handwritten', 'latexformulas', 'llavar_gpt4_20k', 
+                                           'lnqa', 'localized_narratives', 'lrv_chart', 'lrv_normal(filtered)', 'lvis_instruct4v', 'mapqa', 
+                                           'mapqa(mathv360k)', 'maptext', 'mavis_math_metagen', 'mavis_math_rule_geo', 'memotion', 
+                                           'mimic_cgd', 'mmra', 'mmsoc_memotion', 'multihiertt', 'nlvr2', 'ocrvqa', 'oodvqa', 'orand_car_a', 
+                                           'pathvqa', 'pdfvqa', 'plotqa', 'pmc_vqa(mathv360k)', 'raven', 'rendered_text', 'robut_sqa', 
+                                           'robut_wikisql', 'robut_wtq', 'scienceqa', 'scienceqa(nona_context)', 'screen2words', 'screenqa', 
+                                           'sharegpt4o', 'sharegpt4v(coco)', 'sharegpt4v(knowledge)', 'sharegpt4v(llava)', 'sharegpt4v(sam)', 
+                                           'sketchyvqa', 'slidevqa', 'spark', 'spatialsense', 'spot_the_diff', 'sroie', 'st_vqa', 
+                                           'super_clevr(mathv360k)', 'synthdog', 'tabmwp', 'tabmwp(mathv360k)', 'tallyqa', 'tat_qa', 
+                                           'textcaps', 'textocr(gpt4v)', 'textvqa', 'tqa', 'ureader_cap', 'ureader_ie', 'ureader_kg_processed', 
+                                           'vision_flan(filtered)', 'vistext', 'vistext(cauldron)', 'visual7w', 'visualmrc', 
+                                           'visualwebinstruct(filtered)', 'vizwiz(mathv360k)', 'vqarad', 'vqav2', 'vsr', 'websight', 'wildvision', 'wordart', 'yesbut')
     wandb_entity: str = "HuggingFace" # Indicate the entity to log to in wandb
     log_wandb: bool = True
     use_lmms_eval: bool = True # Use lmms-eval for evaluation
