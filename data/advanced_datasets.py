@@ -117,7 +117,7 @@ class ConstantLengthDataset(IterableDataset):
                         more_examples = False
                         break
 
-                if len(sample["input_ids"]) >= self.max_sample_length:
+                if len(sample["input_ids"]) >= self.seq_length:
                     continue  # skip overly long samples
                 if len(sample["images"]) > self.max_images_per_example:
                     continue  # skip samples that exceed the image constraint
