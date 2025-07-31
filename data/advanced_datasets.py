@@ -218,10 +218,10 @@ class ConstantLengthDataset(IterableDataset):
         ids, lbl, am, ims = [], [], [], []
 
         for i in group_indices:
-        ids.extend(batch[i]["input_ids"].tolist())    # Convert to list first
-        lbl.extend(batch[i]["labels"].tolist())       
-        am.extend(batch[i]["attention_mask"].tolist()) 
-        ims.extend(batch[i]["images"])
+            ids.extend(batch[i]["input_ids"].tolist())    # Convert to list first
+            lbl.extend(batch[i]["labels"].tolist())       
+            am.extend(batch[i]["attention_mask"].tolist()) 
+            ims.extend(batch[i]["images"])
 
         # safety: assert we never overflow
         if len(ids) > max_len:
