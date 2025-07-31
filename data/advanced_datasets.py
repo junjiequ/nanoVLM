@@ -218,13 +218,13 @@ class ConstantLengthDataset(IterableDataset):
         ids, lbl, am, ims = [], [], [], []
 
         for i in group_indices:
-            ids.extend(batch[i]["input_ids"])
-            lbl.extend(batch[i]["labels"])
-            am.extend(batch[i]["attention_mask"])
-            ims.extend(batch[i]["images"])
+        ids.extend(batch[i]["input_ids"].tolist())    # Convert to list first
+        lbl.extend(batch[i]["labels"].tolist())       
+        am.extend(batch[i]["attention_mask"].tolist()) 
+        ims.extend(batch[i]["images"])
 
         # safety: assert we never overflow
         if len(ids) > max_len:
             raise ValueError(f"Packed length {len(ids)} > max_len {max_len}")
 
-        return torch.stack(ids), torch.stack(lbl), torch.stack(am), ims
+        return torch.tensor(ids), torch.tensor(lbl), torch.tensor(am), ims
