@@ -55,5 +55,17 @@ class VQACollator(BaseCollator):  # Visual Question Answering Collator
         batch["attention_mask"] = [torch.nn.functional.pad(attention_mask, (max_length - len(attention_mask), 0), value=0) for attention_mask in batch["attention_mask"]]
 
     def __call__(self, batch):
+        # Additional safety check for multiprocessing edge cases
+        if not isinstance(batch, list):
+            raise TypeError(f"VQACollator expected list of dicts, got {type(batch)}: {batch}")
+        
+        if len(batch) == 0:
+            raise ValueError("VQACollator received empty batch")
+            
+        # Check if any item in batch is not a dictionary
+        for i, item in enumerate(batch):
+            if not isinstance(item, dict):
+                raise TypeError(f"VQACollator batch[{i}] expected dict, got {type(item)}: {item}")
+        
         batch = self.prepare_batch(batch, max_length=self.max_length)
         return batch
