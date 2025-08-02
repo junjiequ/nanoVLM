@@ -366,7 +366,17 @@ def train(train_cfg, vlm_cfg):
                         best_val_loss = avg_val_loss
                         if is_master():
                             save_model = model.module if is_dist() else model  # unwrap the model for saving if DDP
-                            save_model.save_pretrained(save_directory=os.path.join(vlm_cfg.vlm_checkpoint_path, run_name))
+                            
+                            # CHECKPOINT PATH FIX: Handle continuation training properly
+                            # Initialize first (optional but more explicit)
+                            checkpoint_base = vlm_cfg.vlm_checkpoint_path  # Default value
+
+                            if train_cfg.resume_from_vlm_checkpoint:
+                                # Override for continuation training
+                                checkpoint_base = os.path.dirname(vlm_cfg.vlm_checkpoint_path)
+                            
+                            save_directory = os.path.join(checkpoint_base, run_name)
+                            save_model.save_pretrained(save_directory=save_directory)
 
                     lmms_results = {}
                     if train_cfg.use_lmms_eval:
